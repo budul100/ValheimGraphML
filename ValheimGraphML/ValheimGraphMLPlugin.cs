@@ -1,23 +1,24 @@
-﻿using System.IO;
-using BepInEx;
+﻿using System;
+using System.IO;
+//using BepInEx;
 using GraphMLWriter;
 using Jotunn;
 using ValheimGraphML.Model;
 
 namespace ValheimGraphML
 {
-    [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
-    [BepInDependency(Main.ModGuid)]
-    internal class ValheimGraphMLPlugin : BaseUnityPlugin
+    //[BepInPlugin(PluginGUID, PluginName, PluginVersion)]
+    //[BepInDependency(Main.ModGuid)]
+    internal class ValheimGraphMLPlugin
+    //: BaseUnityPlugin
     {
         public const string PluginGUID = "com.jotunn.jotunnmodstub";
         public const string PluginName = "ValheimGraphML";
         public const string PluginVersion = "0.0.1";
 
-
-        private void Awake()
+        public void Awake()
         {
-            var path = Path.Combine(Paths.ConfigPath, "file.graphml");
+            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "file.graphml");
             var input = Example();
             var writer = new Writer<GraphGame>();
             writer.Save(input: input, path: path);
